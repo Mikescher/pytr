@@ -96,7 +96,7 @@ class Portfolio:
         # print()
 
         print(
-            'Name                      ISIN            avgCost *   quantity =    buyCost ->   netValue       diff   %-diff'
+            'Name                                            ISIN            avgCost *   quantity =    buyCost ->   netValue       diff   %-diff'
         )
         totalBuyCost = 0.0
         totalNetValue = 0.0
@@ -113,13 +113,13 @@ class Portfolio:
             totalNetValue += float(pos['netValue'])
 
             print(
-                f"{pos['name']:<25} {pos['instrumentId']} {float(pos['averageBuyIn']):>10.2f} * {float(pos['netSize']):>10.2f}"
+                f"{pos['name']:<47} {pos['instrumentId']} {float(pos['averageBuyIn']):>10.2f} * {float(pos['netSize']):>10.2f}"
                 + f" = {float(buyCost):>10.2f} -> {float(pos['netValue']):>10.2f} {diff:>10.2f} {diffP:>7.1f}%"
             )
 
-        print(
-            'Name                      ISIN            avgCost *   quantity =    buyCost ->   netValue       diff   %-diff'
-        )
+        #print(
+        #    'Name                                            ISIN            avgCost *   quantity =    buyCost ->   netValue       diff   %-diff'
+        #)
         print()
 
         diff = totalNetValue - totalBuyCost
@@ -127,12 +127,12 @@ class Portfolio:
             diffP = 0.0
         else:
             diffP = ((totalNetValue / totalBuyCost) - 1) * 100
-        print(f'Depot {totalBuyCost:>43.2f} -> {totalNetValue:>10.2f} {diff:>10.2f} {diffP:>7.1f}%')
+        print(f'Depot {totalBuyCost:>91.2f} -> {totalNetValue:>10.2f} {diff:>10.2f} {diffP:>7.1f}%')
 
         cash = float(self.cash[0]['amount'])
         currency = self.cash[0]['currencyId']
-        print(f'Cash {currency} {cash:>40.2f} -> {cash:>10.2f}')
-        print(f'Total {cash+totalBuyCost:>43.2f} -> {cash+totalNetValue:>10.2f}')
+        print(f'Cash {currency} {cash:>88.2f} -> {cash:>10.2f}')
+        print(f'Total {cash+totalBuyCost:>91.2f} -> {cash+totalNetValue:>10.2f}')
 
     def get(self):
         asyncio.get_event_loop().run_until_complete(self.portfolio_loop())
